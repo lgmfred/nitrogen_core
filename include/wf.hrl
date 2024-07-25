@@ -9,8 +9,6 @@
 -compile({parse_transform, rekt}).
 
 -define(WF_EXTEND(OrigRec, NewRec, Module, Fields), -extend({OrigRec, NewRec, [{module, Module} | Fields]})).
-<<<<<<< HEAD
-=======
 -define(WF_BLANK(X), (X==undefined orelse X=="" orelse X==<<>>)).
 -define(WF_HEX(C), (
                     (C >= $0 andalso C =< $9) orelse
@@ -19,8 +17,12 @@
 -define(WF_PROFILE(Tag, Cmd, To), wf:profile(Tag, fun() -> Cmd end, To)).
 -define(WF_PROFILE(Tag, Cmd), wf:profile(Tag, fun() -> Cmd end)).
 -define(WF_PROFILE(Cmd), ?WF_PROFILE(??Cmd, Cmd)).
->>>>>>> 030e0bb (Fixing Google Charts - not completely done, but at least working now)
 
+-ifdef(DO_ELEMENT_CLASSES).
+-define(ADD_ELEMENT_CLASS(NewClass, ExistingClass), [NewClass, ExistingClass]).
+-else.
+-define(ADD_ELEMENT_CLASS(NewClass, ExistingClass), ExistingClass).
+-endif.
 
 %%% TYPES FOR DIALYZER %%%
 
